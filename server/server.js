@@ -14,6 +14,26 @@ var io = socketIO(server);
 io.on('connection' , (socket) => {
 	console.log('new user connected');
 	
+	// socket.emit('newEmail' , {
+		// from : 'mohammad@Example.com' ,
+		// text : 'Hey. how\'d you do' ,
+		// createdAt : 123
+	// });
+	
+	// socket.on('createEmail' , (newEmail) => {
+		// console.log('createEmail',newEmail);
+	// });
+	
+	socket.emit('newMessage' , {
+		from : 'mohammad@Example.com' , 
+		text : 'hey. this is mohammad' ,
+		creadtedAt : new Date()
+	});
+	
+	socket.on('newMessage' , (newMessage) => {
+		console.log('newMessage ', newMessage);
+	});
+	
 	socket.on('disconnect' , () => {
 		console.log('user was disconnected');
 	});
