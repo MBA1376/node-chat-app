@@ -21,13 +21,25 @@ io.on('connection' , (socket) => {
 		// text : 'hey. this is mohammad' ,
 		// creadtedAt : new Date()
 	// });
+	socket.emit('newMessage' , {
+		from : 'Admin' ,
+		text : 'welcome to the chat page' ,
+		createdAt : new Date().getTime()
+	});
+	
+	socket.broadcast.emit('newMessage' , {
+		from : 'Admin' ,
+		text : 'new user joined' ,
+		createdAt : new Date().getTime()
+	});
 	
 	socket.on('newMessage' , (newMessage) => {
 		console.log('newMessage ', newMessage);
 		
 		io.emit('newMessage' , {
 			from :  newMessage.from ,
-			text : newMessage.text
+			text : newMessage.text , 
+			createdAt : new Date().getTime()
 		});
 	});
 	

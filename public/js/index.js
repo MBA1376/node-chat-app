@@ -19,5 +19,5 @@ var socket = io();
 	socket.on('newMessage' , function(newMessage) {
 			console.log('new message : ' ,newMessage);
 	});
-		
+	
 	
